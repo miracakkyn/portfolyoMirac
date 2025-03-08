@@ -1,0 +1,513 @@
+*{
+    margin: 0;/*Tüm elementlerin dış boşluğunu sıfırlar*/
+    padding: 0;/* "      "         iç boşluğunu sıfırlar */
+    box-sizing: border-box; /* Elemanların boyutlandırmasını border dahil yapar*/
+}
+
+:root{
+    /*Dark temanın ana renk değişkenleri , sitede tutarlı renk kullanımı sağlar*/
+    --primary-color: #6C63FF; /* Ana renk - mor tonu */
+    --primary-hover: #5A52D9; /* Ana rengin hover durumu */
+    --bg-dark: #121212; /* Arka plan rengi - koyu siyah */
+    --bg-card: #1E1E1E; /* Kart arka plan rengi - daha açık siyah */
+    --text-primary: #E0E0E0; /* Ana metin rengi - açık gri */
+    --text-secondary: #A0A0A0; /* İkincil metin rengi - daha koyu gri */
+    --accent-color: #6C63FF; /* Vurgu rengi */
+
+}
+body{
+    font-family: 'Poppins',sans-serif;/*Yazı tipini ayarlar googlefontsdan yüklenir*/
+    line-height: 1.6;/*Satır aralığını*/
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    overflow-x:hidden;/*Yatay kaydırmayı engeller*/
+}
+
+a{
+    text-decoration: none;/*Linklerin altı çizgili olmasını engeller*/
+    color: var(--text-primary);
+    transition: color 0.3s;/*Renk değişimlerini animasyonlu yapar*/
+
+}
+a:hover{
+    color: var(--primary-color);
+}
+ul{
+    list-style: none;/*Liste işaretlerini kaldırır*/
+}
+.section-title{
+    text-align: center;
+    margin-bottom: 40px;/*Başlıkların altına 40px boşluk ekler*/
+    font-size: 32px;
+    position: relative;/*Position:absolute olan alt elemanlar için referans olur*/
+    padding-bottom: 10px;/*başlık altına 10px i. boşluk ekler*/
+    color:var(--text-primary);
+
+}
+.section-title::after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;/*Alt kenardan 0px uzakta*/
+    left: 50%;/*Sol kenardan yüzden 50 uzakta*/
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+
+}
+
+section{
+    padding: 80px 0;/* sectionlara üst ve alttan 80px boşluk ekler*/ 
+}
+.btn{
+    display: inline-block;/*Blok elementi gibi boyutlandırır ama satır içi yerleştirir*/
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Arka plan renk değişimini animasyonlu yapar*/
+    font-weight: 600;/*yazı kalınlığu(600=semi-bold)*/
+    border: none;/*Kenarları kaldırır*/
+    cursor: pointer;/*İmleç üzerine gelince el işareti gönderir*/
+}
+.btn:hover{
+    background-color: var(--primary-hover);/*Buton üzerine gelince renk değiştirir*/
+
+}
+.btn.small{
+    padding: 8px 15px;/*Küçük buton için daha za iç boşluk*/
+    font-size: 14px;
+}
+
+.navbar{
+    position: fixed;/*Sayfada sabit pozisyonda duracak*/
+    top: 0px;/*üstten 0px uzakta*/
+    left: 0px;/*soldan 0px uzakta*/
+    width: 100%;
+    background-color: rgba(18, 18, 18, 0.95);/*hafif şeffaf koyu arkaplan*/
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;/*Flexbox düzeni kullanır*/
+    justify-content: space-between;/*İçeriikleri yatayda eşit dağıtır*/
+    align-items: center;/*İçerikleri dikeyde ortalar*/
+    padding: 15px 10%;
+    z-index: 1000;/*Diğer elementlerin üzerinde görünmesini sağlar*/
+}
+
+.logo{
+    font-size: 24px;
+    font-weight: bold;
+    color:var(--primary-color);
+}
+.nav-links{
+    display: flex;
+    font-weight: 500;
+
+}
+.nav-links li{
+    margin-left: 30px;/*liste öğeleri arası 30px boşluk ekler*/
+}
+.nav-links a{
+    font-size: 16px;
+    padding: 5px 0;
+    position: relative;
+    font-weight: 500;
+}
+.nav-links a::after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+.nav-links a:hover::after {
+    width: 100%; /* Hover durumunda genişlik %100 olur (animasyonlu) */
+}
+.burger{
+    display: none;
+    cursor:pointer;
+}
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 5px;
+    transition: all 0.3s ease;/*Tüm değişimleri animasyonlu yapar*/
+}
+
+.hero{
+    height: 100vh;
+    background-color: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content h1{
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+
+}
+.hero-content p{
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+}
+
+/*Hakkımda bölümü*/
+
+.about{
+    background-color: var(--bg-dark);
+
+}
+.about-content{
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.about-text{
+    flex: 1;
+    padding-right: 40px;
+
+}
+.about-text p{
+    margin-bottom: 20px;
+    font-size: 16px;
+    color:var(--text-secondary);
+}
+.about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px; /* Biraz boşluk ekle */
+}
+
+.profile-image {
+    width: 300px; /* Daha küçük boyut */
+    height: 300px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opsiyonel: hafif gölge ekler */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+.image-placeholder{
+    width: 300px;
+    height: 300px;
+    background-color: var(--bg-card);
+    display: flex;
+    align-items: center;/*İçeriği dikeyde ortalar*/
+    justify-content: center;/*İçeriği yatayda ortalar*/
+    border-radius: 50%;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    border: 3px solid var(--primary-color);/*Kenarlığı değişkenden renk ile 3 px kalınlıkğında ayapar*/
+
+}
+
+
+/*Beceriler bölümü*/
+
+.skills{
+    background-color: #1A1A1A;
+}
+.skills-categories{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+.category-btn{
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+.category-btn::after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+.category-btn:hover,.category-btn.active{
+    color: var(--primary-color);
+}
+.category-btn.active::after{
+width: 100%;
+}
+.skills-container{
+    max-width: 800px;
+    margin:0 auto;
+    display: none;
+}
+.skills-container.active{
+    display:block;
+}
+.skill-card{
+    margin-bottom: 30px;
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+.skill-card h3{
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.skill-level{
+    width: 100%;
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+.skill-progress{
+    height: 100%;
+    background-color: var(--primary-color);
+}
+.skill-percent{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: var(--text-secondary);
+}
+
+/*Projeler bölümü*/
+
+.projects{
+    background-color: var(--bg-dark);
+}
+.projects-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.project-card{
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+.project-card:hover .project-thumbnail {
+    transform: scale(1.05);
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+.project-image {
+    width: 100%;
+    height: 180px; /* Görsel yüksekliği - ihtiyaca göre ayarlanabilir */
+    border-radius: 8px 8px 0 0; /* Üst köşeleri yuvarlat */
+    overflow: hidden; /* Taşan resim içeriğini gizle */
+    margin-bottom: 15px;
+}
+.project-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Görsellerin en-boy oranını korur ve gerekirse kırpar */
+    transition: transform 0.3s ease; /* Hover efekti için geçiş */
+}
+.project-card h3{
+    margin: 0 15px 8px;
+    
+}
+.project-card p{
+    padding: 0 15px 15px;
+    color: var(--text-secondary);
+}
+.project-card .btn{
+    margin: 0 15px 15px;
+
+}
+
+
+/*İletişim bölümü*/
+.contact{
+    background-color: #1A1A1A;
+}
+.contact-container{
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 40px;
+}
+.contact-form{
+    flex: 1;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.form-group label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-primary);
+
+}
+.form-group input,.form-group textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #222;
+    color: var(--text-primary);
+}
+.form-group textarea{
+    resize: vertical;
+}
+.contact-info{
+    flex: 1;
+}
+.contact-info h3{
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+.contact-info p{
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+.social-links{
+    margin-top: 20px;
+
+}
+.social-links a{
+    margin-right: 15px;
+    color:var(--primary-color);
+    transition: opacity 0.3s;
+}
+.social-links a:hover{
+    opacity: 0.8;
+}
+
+/*Footer*/
+
+.footer{
+    text-align: center;
+    padding: 20px;
+    background-color: #0f0f0f;
+    color: var(--text-secondary);
+
+}
+
+/*Responsive tasarım*/
+@media (max-width:768px){
+    /*768 px ve altındaki ekran genişliklerinde uygulanacak stiller*/
+    .burger{
+        display: block;
+    }
+    .nav-links{
+        position: absolute;
+        right: 0;
+        top: 70px; /* Üst kenardan 70px uzakta */
+        background-color: var(--bg-dark); /* Menü arka planı */
+        flex-direction: column; /* Dikey düzen */
+        align-items: center; /* İçeriği yatayda ortalar */
+        width: 100%; /* Tam genişlikte */
+        transform: translateX(100%); /* Başlangıçta ekranın dışında (sağda) */
+        transition: transform 0.5s ease-in; /* Dönüşümü animasyonlu yapar */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Gölge ekler */
+    }
+    .nav-links.active {
+        transform: translateX(0%); /* Aktif ise ekrana girer */
+    }
+    
+    .nav-links li {
+        margin: 15px 0; /* Üst-alt 15px, sol-sağ 0px dış boşluk */
+    }
+    
+    /* İçerik düzenlemeleri */
+    .about-content {
+        flex-direction: column; /* Dikey düzen */
+    }
+    
+    .about-text {
+        padding-right: 0; /* Sağ iç boşluğu kaldırır */
+        margin-bottom: 30px; /* Alt kenara 30px boşluk */
+    }
+    
+    .contact-container {
+        flex-direction: column; /* Dikey düzen */
+    }
+    
+    .section-title {
+        font-size: 28px; /* Daha küçük başlık boyutu */
+    }
+    
+    .hero-content h1 {
+        font-size: 36px; /* Daha küçük ana başlık */
+    }
+    
+    .hero-content p {
+        font-size: 20px; /* Daha küçük alt başlık */
+    }
+    
+    .skills-categories {
+        flex-direction: column; /* Dikey düzen */
+        align-items: center; /* İçeriği yatayda ortalar */
+    }
+    
+    .category-btn {
+        margin: 5px 0; /* Üst-alt 5px, sol-sağ 0px dış boşluk */
+    }
+}
+
+/* Form durum mesajları için stil */
+#form-status {
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#form-status .sending {
+    color: #0066cc;
+}
+
+#form-status .success {
+    color: #28a745;
+}
+
+#form-status .error {
+    color: #dc3545;
+}
+
+.privacy-note {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+    font-style: italic;
+}
+
+.form-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+
+
+
+
